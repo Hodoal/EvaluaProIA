@@ -5,28 +5,28 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAnalytics } from "firebase/analytics";
 
-// Your web app's Firebase configuration
+// Config desde variables de entorno
 const firebaseConfig = {
-  apiKey: "AIzaSyB-DMO07BaqHo7iTB7DKmhjFsHFrFsB9nM",
-  authDomain: "calificaciones-51c74.firebaseapp.com",
-  projectId: "calificaciones-51c74",
-  storageBucket: "calificaciones-51c74.firebasestorage.app",
-  messagingSenderId: "599987671779",
-  appId: "1:599987671779:web:bc2fa3bd3536fb6bb12bd6",
-  measurementId: "G-JW57B4HQTK"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase services
+// Services
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 
-// Initialize Analytics (opcional - solo si necesitas analytics)
+// Analytics (opcional)
 let analytics;
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   analytics = getAnalytics(app);
 }
 export { analytics };
